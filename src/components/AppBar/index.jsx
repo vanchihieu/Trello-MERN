@@ -34,6 +34,7 @@ const AppBar = () => {
                     <SvgIcon
                         component={TrelloIcon}
                         inheritViewBox
+                        fontSize="small"
                         sx={{ color: "primary.main" }}
                     />
                     <Typography
@@ -56,7 +57,7 @@ const AppBar = () => {
                 <Button variant="outlined">Create</Button>
             </Box>
 
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
                 <TextField
                     id="outlined-search"
                     label="Search..."
@@ -72,11 +73,11 @@ const AppBar = () => {
                         variant="dot"
                         sx={{ cursor: "pointer" }}
                     >
-                        <NotificationsNoneIcon />
+                        <NotificationsNoneIcon sx={{ color: "primary.main" }} />
                     </Badge>
                 </Tooltip>
                 <Tooltip title="Help" sx={{ cursor: "pointer" }}>
-                    <HelpOutlineIcon />
+                    <HelpOutlineIcon sx={{ color: "primary.main" }} />
                 </Tooltip>
 
                 <Profiles />
