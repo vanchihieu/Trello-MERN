@@ -16,6 +16,7 @@ import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
 import Profiles from "./Menus/Profiles";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
 const AppBar = () => {
     return (
         <Box
@@ -57,7 +58,9 @@ const AppBar = () => {
                     <Recent />
                     <Starred />
                     <Templates />
-                    <Button variant="outlined">Create</Button>
+                    <Button variant="outlined" startIcon={<LibraryAddIcon />}>
+                        Create
+                    </Button>
                 </Box>
             </Box>
 
