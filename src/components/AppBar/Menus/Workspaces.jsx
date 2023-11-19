@@ -10,8 +10,8 @@ import ContentCut from "@mui/icons-material/ContentCut";
 import ContentCopy from "@mui/icons-material/ContentCopy";
 import ContentPaste from "@mui/icons-material/ContentPaste";
 import Cloud from "@mui/icons-material/Cloud";
-import Divider from '@mui/material/Divider';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import Divider from "@mui/material/Divider";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Workspaces = () => {
     const [anchorEl, setAnchorEl] = useState(null);
@@ -26,6 +26,7 @@ const Workspaces = () => {
         <Box>
             {" "}
             <Button
+                sx={{ color: "white" }}
                 id="basic-button-workspaces"
                 aria-controls={open ? "basic-menu-workspaces" : undefined}
                 aria-haspopup="true"

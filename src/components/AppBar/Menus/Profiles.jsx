@@ -32,7 +32,7 @@ const Profiles = () => {
                     aria-expanded={open ? "true" : undefined}
                 >
                     <Avatar
-                        sx={{ width: 34, height: 34 }}
+                        sx={{ width: 36, height: 36 }}
                         src="https://images.unsplash.com/photo-1699563070885-8e955e11735b?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                         alt="profile"
                     />

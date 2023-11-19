@@ -11,14 +11,15 @@ import AvatarGroup from "@mui/material/AvatarGroup";
 import Tooltip from "@mui/material/Tooltip";
 import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+
 const MENU_STYLES = {
-    color: "primary.main",
-    bgcolor: "white",
+    color: "white",
+    bgcolor: "transparent",
     border: "none",
     paddingX: "5px",
     borderRadius: "5px",
-    "& .MuiSvgIcon-root": {
-        color: "primary.main",
+    ".MuiSvgIcon-root": {
+        color: "white",
     },
     "&:hover": {
         bgcolor: "primary.50",
@@ -36,9 +37,11 @@ const BoardBar = () => {
                 alignItems: "center",
                 justifyContent: "space-between",
                 gap: 2,
-                overflow: "hidden",
+                overflow: "auto",
                 paddingX: { xs: 0, md: 2 },
-                borderTop: "1px solid #ccc",
+                bgcolor: (theme) =>
+                    theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
+                borderBottom: "1px solid white",
             }}
         >
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -88,17 +91,27 @@ const BoardBar = () => {
             </Box>
 
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
-                <Button variant="outlined" startIcon={<PersonAddIcon />}>
+                <Button
+                    variant="outlined"
+                    startIcon={<PersonAddIcon />}
+                    sx={{
+                        color: "white",
+                        borderColor: "white",
+                        "&:hover": { borderColor: "white" },
+                    }}
+                >
                     Invite
                 </Button>
 
                 <AvatarGroup
                     max={5}
                     sx={{
+                        gap: '10px',
                         "& .MuiAvatar-root": {
                             width: "34px",
                             height: "34px",
                             fontSize: 16,
+                            border: 'none'
                         },
                     }}
                 >
