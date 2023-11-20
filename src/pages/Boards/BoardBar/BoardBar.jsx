@@ -41,7 +41,6 @@ const BoardBar = () => {
                 paddingX: { xs: 0, md: 2 },
                 bgcolor: (theme) =>
                     theme.palette.mode === "dark" ? "#34495e" : "#1976d2",
-                borderBottom: "1px solid white",
             }}
         >
             <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -50,14 +49,13 @@ const BoardBar = () => {
                     icon={<DashboardIcon />}
                     label="ChiHieu Dev MERN Stack Board"
                     clickable
-                    onclick={() => {}}
+                    
                 />
                 <Chip
                     sx={MENU_STYLES}
                     icon={<VpnLockIcon />}
                     label="Public/Private Workspace"
                     clickable
-                    onclick={() => {}}
                 />
 
                 <Chip
@@ -65,28 +63,27 @@ const BoardBar = () => {
                     icon={<AddToDriveIcon />}
                     label="Add to Google Drive"
                     clickable
-                    onclick={() => {}}
                 />
                 <Chip
                     sx={MENU_STYLES}
                     icon={<BoltIcon />}
                     label="Automation"
                     clickable
-                    onclick={() => {}}
+                    onClick={() => {}}
                 />
                 <Chip
                     sx={MENU_STYLES}
                     icon={<BoltIcon />}
                     label="Filter"
                     clickable
-                    onclick={() => {}}
+                    onClick={() => {}}
                 />
                 <Chip
                     sx={MENU_STYLES}
                     icon={<FilterListIcon />}
                     label="Filter"
                     clickable
-                    onclick={() => {}}
+                    onClick={() => {}}
                 />
             </Box>
 
