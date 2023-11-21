@@ -12,6 +12,7 @@ import {
     useSensors,
     DragOverlay,
     defaultDropAnimationSideEffects,
+    closestCorners
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./ListColumns/Column/Column";
@@ -63,6 +64,7 @@ const BoardContent = ({ board }) => {
         );
     };
 
+    // trigger khi bắt đầu kéo (drag) một phần tử
     const handleDragStart = (event) => {
         console.log(event);
         setActiveDragItemId(event?.active?.id);
@@ -164,6 +166,7 @@ const BoardContent = ({ board }) => {
         }
     };
 
+    // trigger khi kết thúc hành động kéo (drag) một phần tử => hành động thả (drop)
     const handleDragEnd = (event) => {
         if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.CARD) {
             // console.log('khong lam gi ca');
@@ -215,6 +218,7 @@ const BoardContent = ({ board }) => {
             onDragOver={handleDragOver}
             onDragEnd={handleDragEnd}
             sensors={sensors}
+            collisionDetection={closestCorners}
         >
             <Box
                 sx={{
