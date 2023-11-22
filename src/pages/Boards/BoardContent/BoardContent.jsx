@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import ListColumns from "./ListColumns/ListColumns";
 import Box from "@mui/material/Box";
 import { mapOrder } from "~/utils/sorts";
@@ -13,6 +13,10 @@ import {
     DragOverlay,
     defaultDropAnimationSideEffects,
     closestCorners,
+    closestCenter,
+    pointerWithin,
+    rectIntersection,
+    getFirstCollision,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./ListColumns/Column/Column";
@@ -33,6 +37,7 @@ const BoardContent = ({ board }) => {
     const [oldColumnWhenDraggingCard, setOldColumnWhenDraggingCard] =
         useState(null);
 
+    const lastOverId = useRef(null);
     // yêu cầu chuột di chuyển 10px thì mới kích hoạt event, fix trường hợp click bị gọi event
     // nếu dùng pointerSensor mặc định thì phải kết hợp thuộc tính CSS touchAction: "none" ở những phần tử kéo thả - nhưng mà còn bug
     // const pointerSensor = useSensor(PointerSensor, {
@@ -315,6 +320,55 @@ const BoardContent = ({ board }) => {
         );
     }, [board]);
 
+    // custom lại chiến lược / thuật toán phát hiện va chạm tối ưu cho việc kéo thả card giữa nhiều columns
+    // const collisionDetectionStrategy = useCallback(
+    //     (args) => {
+    //         if (activeDragItemType === ACTIVE_DRAG_ITEM_TYPE.COLUMN) {
+    //             return closestCorners({ ...args });
+    //         }
+
+    //         // tìm các điểm giao nhau, va chạm với con trỏ
+    //         const pointerIntersections = pointerWithin(args);
+
+    //         // thuật toán phát hiện va chạm sẽ trả về một mảng các va chạm ở đây
+    //         const interSections = !!pointerIntersections?.length
+    //             ? pointerIntersections
+    //             : rectIntersection(args);
+
+    //         // Tìm overId đầu tiên trong đám interSections ở trên
+    //         let overId = getFirstCollision(interSections, "id");
+    //         if (overId) {
+    //             const checkColumn = orderedColumns.find(
+    //                 (column) => column._id === overId
+    //             );
+    //             if (checkColumn) {
+    //                 overId = closestCenter({
+    //                     ...args,
+    //                     droppableContainers:
+    //                         args.drodroppableContainersable.filter(
+    //                             (container) => {
+    //                                 return (
+    //                                     container.id !== overId &&
+    //                                     checkColumn?.cardOrderIds?.includes(
+    //                                         container.id
+    //                                     )
+    //                                 );
+    //                             }
+    //                         )[0]?.id,
+    //                 });
+    //             }
+
+    //             lastOverId.current = overId;
+    //             return {
+    //                 id: overId,
+    //             };
+    //         }
+
+    //         return lastOverId.current ? [{ id: lastOverId.current }] : [];
+    //     },
+    //     [activeDragItemType, orderedColumns]
+    // );
+
     return (
         <DndContext
             onDragStart={handleDragStart}
@@ -322,6 +376,7 @@ const BoardContent = ({ board }) => {
             onDragEnd={handleDragEnd}
             sensors={sensors}
             collisionDetection={closestCorners}
+            // collisionDetection={collisionDetectionStrategy}
         >
             <Box
                 sx={{
